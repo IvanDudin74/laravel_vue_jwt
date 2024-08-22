@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'IndexController');
+Route::get('{page}', 'IndexController')->where('page', '.*');
