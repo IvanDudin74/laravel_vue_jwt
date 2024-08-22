@@ -1,8 +1,4 @@
 <script>
-    /*import IndexComponent from "../../js/components/IndexComponent";
-    export default {
-        components: {IndexComponent}
-    }*/
 </script>
 
 @extends('layouts.main')
