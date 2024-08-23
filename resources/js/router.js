@@ -7,7 +7,7 @@ export default VueRouter.createRouter({
         {
             path: '/fruits',
             component: () => import('./components/Fruit/Index.vue'),
-            name: 'fruits.index',
+            name: 'fruit.index',
         },
         {
             path: '/users/login',
@@ -18,6 +18,11 @@ export default VueRouter.createRouter({
             path: '/users/registration',
             component: () => import('./components/User/Registration.vue'),
             name: 'user.registration',
+        },
+        {
+            path: '/users/personal',
+            component: () => import('./components/User/Personal.vue'),
+            name: 'user.personal',
         },
     ]
 })

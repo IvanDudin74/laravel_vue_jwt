@@ -1,24 +1,28 @@
 <script>
+    import api from "../../api"
+
     export default {
         name: "Index",
 
         data() {
             return {
-                fruits: null
+                fruits: null,
             }
         },
 
         methods: {
             getFruits() {
-                axios.get("/api/fruits/")
+                api.get("/api/auth/fruits/")
                     .then(res => {
-                        this.fruits = res.data.data;
+                        if (res) {
+                            this.fruits = res.data.data
+                        }
                     })
-            }
+            },
         },
 
         mounted() {
-            this.getFruits();
+            this.getFruits()
         }
     }
 

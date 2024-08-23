@@ -23,6 +23,9 @@ export default {
                     console.log(res.data);
                 })
         }
+    },
+
+    mounted() {
     }
 }
 </script>
