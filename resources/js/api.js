@@ -34,9 +34,10 @@ api.interceptors.response.use(config => {
                 return api.request(error.config)
             })
         }
-        if (error.response.status === 401) {
+        //console.log(error)
+        /*if (error.response.status === 401) {
             router.push({ name: 'user.login' })
-        }
+        }*/
     })
 //end response
 

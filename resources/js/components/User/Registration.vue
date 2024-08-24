@@ -20,7 +20,7 @@ export default {
                 this.password_confirmation
             })
                 .then(res => {
-                    console.log(res.data);
+                    this.$router.push({ name: 'user.login' })
                 })
         }
     },

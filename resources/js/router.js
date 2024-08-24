@@ -1,7 +1,7 @@
 import * as VueRouter from "vue-router"
 
 
-export default VueRouter.createRouter({
+const route = VueRouter.createRouter({
     history: VueRouter.createWebHistory(),
     routes : [
         {
@@ -24,6 +24,33 @@ export default VueRouter.createRouter({
             component: () => import('./components/User/Personal.vue'),
             name: 'user.personal',
         },
+        {
+            path: '/:pathMatch(.*)*',
+            component: () => import('./components/User/Personal.vue'),
+            name: '404',
+        },
     ]
 })
+
+route.beforeEach((to, from, next) => {
+    const accesToken = localStorage.getItem('access_token')
+
+    if (!accesToken) {
+        if (to.name === 'user.login' || to.name === 'user.registration') {
+            return next()
+        }
+        else {
+            return next({name: 'user.login'})
+        }
+    }
+
+    if (to.name === 'user.login') {
+        if (accesToken) {
+            return next({name: 'user.personal'})
+        }
+    }
+
+    next()
+})
+export default route
 

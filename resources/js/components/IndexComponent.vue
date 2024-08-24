@@ -1,6 +1,26 @@
 <script>
 export default {
-    name: "IndexComponent"
+    name: "IndexComponent",
+
+    data() {
+        return{
+            accessToken: null,
+        }
+    },
+
+    methods: {
+        getAccessToken(){
+            this.accessToken = localStorage.getItem('access_token')
+        }
+    },
+
+    mounted() {
+        this.getAccessToken()
+    },
+
+    updated() {
+        this.getAccessToken()
+    },
 }
 </script>
 
@@ -8,10 +28,10 @@ export default {
     <div>
         <br><br>
         This is Main IndexComponent<br><br>
-        <router-link :to="{ name: 'fruit.index' }">List of fruits</router-link><br>
-        <router-link :to="{ name: 'user.login' }">Login</router-link><br>
-        <router-link :to="{ name: 'user.registration' }">Registration</router-link><br>
-        <router-link :to="{ name: 'user.personal' }">Personal</router-link><br>
+        <router-link v-if="accessToken" :to="{ name: 'fruit.index' }" :key="$route.fullPath">List of fruits</router-link><br>
+        <router-link v-if="!accessToken" :to="{ name: 'user.login' }" :key="$route.fullPath">Login</router-link><br>
+        <router-link v-if="!accessToken" :to="{ name: 'user.registration' }"  :key="$route.fullPath">Registration</router-link><br>
+        <router-link v-if="accessToken" :to="{ name: 'user.personal' }" :key="$route.fullPath">Personal</router-link><br>
         <router-view></router-view>
     </div>
 </template>

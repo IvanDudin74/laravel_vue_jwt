@@ -10,4 +10,3 @@ app.use(router)
 //app.use(store)
 app.component("index-component", IndexComponent)
 app.mount('#app')
-
