@@ -1,12 +1,14 @@
 <script>
 export default {
     name: "Registration",
+
     data() {
         return {
             name: null,
             email: null,
             password: null,
             password_confirmation: null,
+            error: null,
         }
     },
 
@@ -20,7 +22,11 @@ export default {
                 this.password_confirmation
             })
                 .then(res => {
-                    this.$router.push({ name: 'user.login' })
+                    localStorage.access_token = res.data.access_token;
+                    this.$router.push({ name: 'user.personal' })
+                })
+                .catch(error => {
+                    this.error = error.response.data.error
                 })
         }
     },
@@ -39,6 +45,7 @@ export default {
         <input v-model="email" type="email" class="m-3 form-control" placeholder="email">
         <input v-model="password" type="password" class="m-3 form-control" placeholder="password">
         <input v-model="password_confirmation" type="password" class="m-3 form-control" placeholder="repeat password">
+        <div class="text-danger">{{ this.error }}</div>
         <input @click.prevent="this.store" type="submit" class="m-3 btn btn-primary" value="Registration">
     </div>
 </template>

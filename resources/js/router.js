@@ -43,13 +43,11 @@ route.beforeEach((to, from, next) => {
             return next({name: 'user.login'})
         }
     }
-
-    if (to.name === 'user.login') {
-        if (accesToken) {
+    else {
+        if (to.name === 'user.login') {
             return next({name: 'user.personal'})
         }
     }
-
     next()
 })
 export default route

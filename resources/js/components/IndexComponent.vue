@@ -1,4 +1,5 @@
 <script>
+import api from "../api"
 export default {
     name: "IndexComponent",
 
@@ -11,6 +12,14 @@ export default {
     methods: {
         getAccessToken(){
             this.accessToken = localStorage.getItem('access_token')
+        },
+
+        logout() {
+            api.post('api/auth/logout')
+                .then(res => {
+                    localStorage.removeItem('access_token')
+                    this.$router.push({ name: 'user.login' })
+                })
         }
     },
 
@@ -32,6 +41,7 @@ export default {
         <router-link v-if="!accessToken" :to="{ name: 'user.login' }" :key="$route.fullPath">Login</router-link><br>
         <router-link v-if="!accessToken" :to="{ name: 'user.registration' }"  :key="$route.fullPath">Registration</router-link><br>
         <router-link v-if="accessToken" :to="{ name: 'user.personal' }" :key="$route.fullPath">Personal</router-link><br>
+        <a v-if="accessToken" @click.prevent="logout()" href="#">Logout</a><br>
         <router-view></router-view>
     </div>
 </template>

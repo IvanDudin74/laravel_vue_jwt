@@ -6,6 +6,7 @@ export default {
         return {
             email: null,
             password: null,
+            error: null,
         }
     },
 
@@ -15,6 +16,9 @@ export default {
                 .then(res => {
                     localStorage.access_token = res.data.access_token
                     this.$router.push({ name: 'user.personal' })
+                })
+                .catch(error => {
+                    this.error = error.response.data.error
                 })
         }
     }
@@ -28,7 +32,9 @@ export default {
         Login
         <input v-model="email" type="email" class="m-3 form-control" placeholder="email">
         <input v-model="password" type="password" class="m-3 form-control" placeholder="password">
+        <div class="text-danger">{{ this.error }}</div>
         <input @click.prevent="this.login()" type="submit" class="m-3 btn btn-primary" value="Login">
+
     </div>
 </template>
 
