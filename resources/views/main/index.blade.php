@@ -1,6 +1,9 @@
+<script>
+</script>
+
 @extends('layouts.main')
 @section('content')
-    <div>
-        Section
+    <div class="p-5">
+        <index-component></index-component>
     </div>
 @endsection
