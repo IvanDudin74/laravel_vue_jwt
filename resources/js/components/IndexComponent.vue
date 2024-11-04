@@ -42,7 +42,7 @@ export default {
         <router-link v-if="!accessToken" :to="{ name: 'user.registration' }"  :key="$route.fullPath">Registration</router-link><br>
         <router-link v-if="accessToken" :to="{ name: 'user.personal' }" :key="$route.fullPath">Personal</router-link><br>
         <a v-if="accessToken" @click.prevent="logout()" href="#">Logout</a><br>
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
     </div>
 </template>
 
